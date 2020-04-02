@@ -1,5 +1,5 @@
-# Vivek-Yadav
-Operating System Lab Project
+# Opeating System Assignment- By: Vivek Yadav 11809937
+Operating System Assignment
 
 Q_no 3- Write a multithreaded program in C that outputs prime numbers. This program should work as follows: The user will run the program 
 and will enter a number on the command line. The program will then create a separate thread that outputs all the prime numbers less than
