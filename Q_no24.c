@@ -1,5 +1,4 @@
 /*
-Test case given in question...
 4
 5
 1 5 2 0
@@ -14,7 +13,6 @@ Test case given in question...
 0 6 3 2
 0 0 1 4
 */
-// question is solved using banker's algorithm...
 #include<stdio.h>
 int main()
 {
@@ -34,7 +32,8 @@ int main()
     //Input of availble resources
     printf("Kindly enter the available resources for each respected resourse type: \n");
     char rt=65;
-    for(int i=0;i<r;i++)
+    int i,j,k,y;
+    for(i=0;i<r;i++)
     {
         printf("%c: ",rt);
         scanf("%d",&avail[i]);
@@ -43,11 +42,12 @@ int main()
 
     //input of maximum resources required
     printf("\n\n Please enter the maximum demand in a sytem for each process:\n");
-    for(int i=0;i<p;i++)
+    
+    for(i=0;i<p;i++)
     {
         printf("Kindly enter the max demand for process P%d : ",i+1);
         rt=65;
-        for(int j=0;j<r;j++)
+        for(j=0;j<r;j++)
         {
             scanf("%d",&md[i][j]);
         }
@@ -55,19 +55,19 @@ int main()
 
     //input of already allocated resources
     printf("\n\n Please enter the number of resources of each type currently allocated...\n");
-    for(int i=0;i<p;i++)
+    for(i=0;i<p;i++)
     {
     	printf("Kindly enter the number of resources of allocated to process P%d : ",i+1);
         rt=65;
-        for(int j=0;j<r;j++)
+        for(j=0;j<r;j++)
         {
             scanf("%d",&all[i][j]);
         }
 	}
     //calculation of needed resources for each process
-    for(int i=0;i<p;i++)
+    for(i=0;i<p;i++)
     {
-        for(int j=0;j<r;j++)
+        for(j=0;j<r;j++)
         {
             need[i][j]=md[i][j]-all[i][j];
         }
@@ -77,18 +77,18 @@ int main()
     int f[p];               // to store the status whether the ith process is completed or not
     int ans[p];             // to store the safe sequence
     int ind=0;
-    for(int i=0;i<p;i++)
+    for(i=0;i<p;i++)
     {
         f[i]=0;
     }
-    for (int k=0;k<p;k++)
+    for (k=0;k<p;k++)
     {
-        for (int i=0;i<p;i++)
+        for (i=0;i<p;i++)
         {
             if (f[i]==0)
             {
                 int flag = 0;
-                for (int j = 0; j < r; j++)
+                for (j = 0; j < r; j++)
                 {
                 	if (need[i][j] > avail[j])
                     {
@@ -99,7 +99,7 @@ int main()
                 if (flag == 0)
                 {
                 	ans[ind++] = i;
-                	for (int y = 0; y < r; y++)
+                	for (y = 0; y < r; y++)
                 	{
                 	avail[y] += all[i][y];
 					}
@@ -109,7 +109,7 @@ int main()
         }
     }
     int notsafe=0;
-    for(int i=0;i<p;i++)
+    for(i=0;i<p;i++)
     {
         if(f[i]==0)
         {
@@ -120,7 +120,7 @@ int main()
     {
         printf("\n\nThe given values have a safe sequence.....\n");
         printf("The SAFE Sequence is: ");
-        for (int i=0;i<p-1; i++)
+        for (i=0;i<p-1; i++)
         {
             printf("P%d ->",ans[i]);
         }
